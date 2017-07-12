@@ -4,7 +4,7 @@ var roleHarvester = require('role.harvester');
 var roleFinder = require('role.finder');
 var roleCurier = require('role.courier');
 var roleBuilder = require('role.builder');
-
+var roleCourier = require('role.courier');
 
 
 module.exports={
@@ -26,5 +26,9 @@ module.exports={
     
     Builder:{
         behavior: roleBuilder
+    },
+
+    Courier:{
+        behavior: roleCourier
     }
 }
