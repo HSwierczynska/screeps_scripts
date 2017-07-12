@@ -2,22 +2,33 @@ var roleProle = require('role.prole');
 var roleUpgrader = require('role.upgrader');
 var roleHarvester = require('role.harvester');
 var roleFinder = require('role.finder');
+var roleCurier = require('role.courier');
+var roleBuilder = require('role.builder');
+var roleCourier = require('role.courier');
 
-const roles = require('creeps.roles');
 
+module.exports={
+    Prole:{
+        behavior: roleProle
+    },
 
-module.exports.loop = function () {
+    Upgrader:{
+        behavior: roleUpgrader
+    },
 
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
+    Harvester:{
+        behavior: roleHarvester
+    },
 
-        
-        for (var role in roles) {
-            if (creep.memory.role == role) {
-                roles[role].behavior.run(creep);
-                creep.room.visual.text(role, creep.pos);
-            }
-        }
+    Finder:{
+        behavior: roleFinder
+    },
+    
+    Builder:{
+        behavior: roleBuilder
+    },
+
+    Courier:{
+        behavior: roleCourier
     }
-
 }
