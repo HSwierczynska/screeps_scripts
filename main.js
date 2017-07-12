@@ -1,9 +1,3 @@
-var roleProle = require('role.prole');
-var roleUpgrader = require('role.upgrader');
-var roleHarvester = require('role.harvester');
-var roleFinder = require('role.finder');
-var roleCourier = require('role.courier');
-var roleBuilder = require('role.builder');
 const bodies = require('creeps.bodies.js');
 const roles = require('creeps.roles');
 
@@ -14,9 +8,10 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Upgrader');
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'Harvester');
     var proles = _.filter(Game.creeps, (creep) => creep.memory.role == "Prole");
+    var builders =_.filter(Game.creeps, (creep) => creep.memory.role == "Builder");
     
     
-    if(upgraders.length <2){
+    if(upgraders.length <4){
         var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').Upgrader , {role: 'Upgrader'});
     }
     
@@ -24,9 +19,14 @@ module.exports.loop = function () {
         var newHarvesterer = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').Harvester , {role: 'Harvester'});
     }
     
-    if(proles.length <1){
+    if(proles.length <2){
         var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').Prole , {role: 'Prole'});
     }
+    
+    if(builders.length<4){
+        var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').Builder, {role: 'Builder'});
+    }
+    
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -40,9 +40,9 @@ module.exports.loop = function () {
 
 
                 //var names = _.filter(Game.creeps, (creep) => creep.memory.role == role);
-                //if(names.length < 2){
-                  //  var newCreep = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').role , {role: {role}});
-               // }
+                //if(names.length < 3){
+                  //  var newCreep = Game.spawns.Spawn1.createCreep(require('creeps.bodies.js').role , {role: role});
+               //}
             }
         }
     }

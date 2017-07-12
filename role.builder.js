@@ -1,27 +1,27 @@
-var roleBuilder = 
+var roleBuilder = {
 
 
     run: function(creep) {
-	    if(creep.carry.energy < creep.carryCapacity) {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
-        }
-        else {
-            var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
-                            structure.energy < structure.energyCapacity;
+	      if(creep.carry.energy < creep.carryCapacity) {
+            
+            //specified source
+            var source = creep.room.lookForAt(LOOK_SOURCES, 4, 12);
+            if(source != null){
+                if(creep.harvest(source[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                }
+                
+         else {
+               const target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+                if(target) {
+                 if(creep.build(target) == ERR_NOT_IN_RANGE) {
+                   creep.moveTo(target), {visualizePathStyle: {stroke: '#FF9CA3'}};
+                        }
                     }
-            });
-            if(targets.length > 0) {
-                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }
-        }
-	}
+	      }
+    }
 };
 
-module.exports = roleBuilder;
+    module.exports = roleBuilder;
