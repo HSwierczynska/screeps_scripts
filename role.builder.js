@@ -1,27 +1,24 @@
-var roleBuilder = {
+var roleBuilder ={
 
 
     run: function(creep) {
-	      if(creep.carry.energy < creep.carryCapacity) {
-            
-            //specified source
+
+        // harvest energy from the specified source
+        if(creep.carry.energy < creep.carryCapacity){
             var source = creep.room.lookForAt(LOOK_SOURCES, 4, 12);
-            if(source != null){
-                if(creep.harvest(source[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-                }
-                
-         else {
-               const target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-                if(target) {
-                 if(creep.build(target) == ERR_NOT_IN_RANGE) {
-                   creep.moveTo(target), {visualizePathStyle: {stroke: '#FF9CA3'}};
-                        }
-                    }
+            if(creep.harvest(source[0]) == ERR_NOT_IN_RANGE){
+                creep.moveTo(source[0], {visualizePathStyle: { stroke: '#ffaa00'}});
+            }
+            else {
+                var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+                if(target){
+                    if(creep.build(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                        creep.moveTo(target, {visualizePathStyle: {stroke: "#ffaa00"}});
+                    }    
                 }
             }
-	      }
+        }
     }
 };
 
-    module.exports = roleBuilder;
+module.exports = roleBuilder;

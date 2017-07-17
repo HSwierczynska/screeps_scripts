@@ -1,24 +1,16 @@
+const actions = require('creeps.actions');
+
 var roleCourier = {
 
-    
-    run: function(creep) {
-        
-	    if(creep.carry.energy < creep.carryCapacity) {
-	        var target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
-            if(target) {
-                if(creep.pickup(target) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target);
-                }
-            }
-        
+    run: function(creep){
+        if(creep.carry.energy<creep.carryCapacity){
+            actions.withdrawFromContainer(creep);
         }
-        else {
-            if(creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.spawns['Spawn1']);
-            }
+        else{
+            actions.transferToSpawnOrExtension(creep);
         }
-	  }
+    }
 };
 
-module.exports = roleCourier;
+module.exports= roleCourier;
 
