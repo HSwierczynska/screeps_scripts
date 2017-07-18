@@ -1,5 +1,3 @@
-const actions = require('creeps.actions');
-
 var roleHarvester = {
 
     run: function(creep){
@@ -11,7 +9,7 @@ var roleHarvester = {
             }
         }
         else{
-            actions.dumpEnergy(creep);
+            creep.drop(RESOURCE_ENERGY);
         }
     }
 };
