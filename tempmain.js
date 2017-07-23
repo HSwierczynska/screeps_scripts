@@ -1,22 +1,62 @@
-function withdrawFromNearestEnergyStructure(creep, structureType) {
-    var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-        filter: structure => {
-            return structure.structureType == structureType && structure.store[RESOURCE_ENERGY] > 150
-        }
-    });
 
-    if (target && creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(target, {
-            visualizePathStyle: {
-                stroke: '#ffff00'
-            }
-        });
+require('management');
+
+
+const bodies = require('creeps.bodies');
+const roles = require('creeps.roles');
+
+
+module.exports.loop = function() {
+
+    //management.mainAutospawn('Prole', 3);
+
+    var Proles =  _.filter(Game.creeps, (creep) => creep.memory.role == 'Prole');
+    var Upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Upgrader');
+    var Builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Builder');
+    var Harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'Harvester');
+    var Finders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Finder');
+    var Couriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'Courier');
+    var Repairmen = _.filter(Game.creeps, (creep) => creep.memory.role == "Repairman");
+    
+    
+    if(Repairmen.length <3){
+        var newRepairman = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Repairman, {role: 'Repairman'});
+    }
+    
+    if(Proles.length < 4) {
+        var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Prole, {role: 'Prole'});
+    }
+        
+    if(Upgraders.length <1){
+        var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Upgrader, {role:'Upgrader'});
+    }
+    
+    if(Builders.length <15){
+        var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Builder, {role: 'Builder'});
+    }
+    
+    if(Harvesters.length <0){
+        var newHarvester = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Harvester, {role: 'Harvester'});
+    }
+    
+    if(Finders.length <1){
+        var newFinder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Finder, {role: 'Finder'});
+    }
+    
+    if(Couriers.length <1){
+        var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
     }
 
-    if (target) {
-        return true;
-    } else {
-        return false;
+
+    for(var name in Game.creeps){
+        var creep = Game.creeps[name];
+
+        for(var role in roles){
+            if(creep.memory.role == role){
+                roles[role].behavior.run(creep);
+                creep.room.visual.text(role, creep.pos);
+            }
+        }
     }
 
 }
