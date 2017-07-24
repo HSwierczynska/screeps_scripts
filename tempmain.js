@@ -1,4 +1,3 @@
-
 require('management');
 
 
@@ -16,22 +15,25 @@ module.exports.loop = function() {
     var Harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'Harvester');
     var Finders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Finder');
     var Couriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'Courier');
-    var Repairmen = _.filter(Game.creeps, (creep) => creep.memory.role == "Repairman");
+    var Repairmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'Repairman');
+
     
     
-    if(Repairmen.length <3){
+       
+    if(Upgraders.length <1){
+        var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Upgrader, {role:'Upgrader'});
+    }
+    
+    
+    if(Repairmen.length <6){
         var newRepairman = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Repairman, {role: 'Repairman'});
     }
     
     if(Proles.length < 4) {
         var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Prole, {role: 'Prole'});
     }
-        
-    if(Upgraders.length <1){
-        var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Upgrader, {role:'Upgrader'});
-    }
-    
-    if(Builders.length <15){
+     
+    if(Builders.length <6){
         var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Builder, {role: 'Builder'});
     }
     
@@ -43,7 +45,7 @@ module.exports.loop = function() {
         var newFinder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Finder, {role: 'Finder'});
     }
     
-    if(Couriers.length <1){
+    if(Couriers.length <0){
         var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
     }
 
