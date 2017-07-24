@@ -72,24 +72,24 @@ function withdrawFromContainer(creep){
 function transferingEnergy(creep, structureType){
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: (structure) => {
-            return(structure.structureType == structureType)
+            return(structure.structureType == structureType) && structure.energy < structure.energyCapacity
         }
     });
     if(target){
-        if(creep.transfer(target[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-            creep.moveTo(target[0]);
+        if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+            creep.moveTo(target);
         }
     }
 };
 
 
 function transferingToSpawn(creep){
-    return transferingEnergy(creep, STRUCTURE_SPAWN)
+    return (transferingEnergy(creep, STRUCTURE_SPAWN));
 };
 
 
 function transferingToExtension(creep){
-    return transferingEnergy(creep, STRUCTURE_EXTENSION)
+    return (transferingEnergy(creep, STRUCTURE_EXTENSION));
 };
 
 
