@@ -14,12 +14,12 @@ var roleRepairman ={
 
         if(creep.memory.repairing) {
             
-            var closestDamagedStructure = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => structure.hits < structure.hitsMax
+            var closestDamagedWall = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => structure.structureType == STRUCTURE_WALL && structure.hits < 200000
             });
-            if(closestDamagedStructure) {
-                if(creep.repair(closestDamagedStructure) == ERR_NOT_IN_RANGE){
-                    creep.moveTo(closestDamagedStructure,
+            if(closestDamagedWall){
+                if(creep.repair(closestDamagedWall) == ERR_NOT_IN_RANGE){
+                    creep.moveTo(closestDamagedWall,
                                  {visualizePathstyle: {stroke: '#ffffff'}})};
             }
         }
