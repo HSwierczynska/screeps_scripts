@@ -7,7 +7,6 @@ var roleBuilder = require('role.builder');
 var roleRepairman = require('role.repairman');
 
 
-
 module.exports={
     Prole:{
         behavior: roleProle

@@ -1,10 +1,10 @@
 module.exports={
-    Prole:[WORK, WORK, CARRY, MOVE],
+    Prole:[WORK, CARRY, MOVE, MOVE],
     Harvester: [WORK, WORK, MOVE],
     Courier: [WORK, CARRY, MOVE, MOVE],
     Upgrader: [MOVE, CARRY, CARRY, WORK],
     Finder: [CARRY, CARRY,MOVE,  MOVE],
     Builder: [WORK, CARRY,  CARRY,  MOVE],
-    Repairman: [WORK, WORK, CARRY, MOVE, MOVE]
+    Repairman: [WORK, CARRY, CARRY, MOVE, MOVE]
     
 }
