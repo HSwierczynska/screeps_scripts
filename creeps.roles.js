@@ -5,6 +5,7 @@ var roleFinder = require('role.finder');
 var roleCourier = require('role.courier');
 var roleBuilder = require('role.builder');
 var roleRepairman = require('role.repairman');
+var roleWarrior = require('role.warrior');
 
 
 module.exports={
@@ -34,5 +35,9 @@ module.exports={
 
     Repairman:{
         behavior: roleRepairman
+    },
+
+    Warrior:{
+        behavior: roleWarrior
     }
 }
