@@ -27,7 +27,7 @@ var roleBuilder = {
 	      else {
 	          actions.searchingForSources(creep);
             }
-	      }
+	      
 
         // Reapiring the roads
 
@@ -42,12 +42,12 @@ var roleBuilder = {
 
         if(creep.memory.repairing) {
             
-            var closestDamagedWall = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => STRUCTURE_ROAD && structure.hits < (0.75 *structure.hitsMax)
+            var closestDamagedRoad = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => (STRUCTURE_ROAD && structure.hits < (0.5 *structure.hitsMax) && structure.structureType != STRUCTURE_WALL)
             });
-            if(closestDamagedWall){
-                if(creep.repair(closestDamagedWall) == ERR_NOT_IN_RANGE){
-                    creep.moveTo(closestDamagedWall,
+            if(closestDamagedRoad){
+                if(creep.repair(closestDamagedRoad) == ERR_NOT_IN_RANGE){
+                    creep.moveTo(closestDamagedRoad,
                                  {visualizePathstyle: {stroke: '#ffffff'}})};
             }
         }
@@ -55,7 +55,8 @@ var roleBuilder = {
             actions.searchingForSources(creep);
         }
 
-	  }
+
+     }
 };
 
 module.exports = roleBuilder;
