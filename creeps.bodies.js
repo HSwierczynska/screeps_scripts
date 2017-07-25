@@ -1,6 +1,6 @@
 module.exports={
     Prole:[WORK, CARRY, MOVE, MOVE],
-    Harvester: [WORK, WORK, WORK, MOVE],
+    Harvester: [WORK, WORK, WORK, WORK, MOVE],
     Courier: [WORK, CARRY, MOVE, MOVE],
     SpawnCourier: [WORK, CARRY, MOVE, MOVE],
     Upgrader: [MOVE, CARRY, CARRY, WORK],

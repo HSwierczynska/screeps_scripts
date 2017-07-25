@@ -20,12 +20,12 @@ module.exports.loop = function() {
     var Warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'Warrior');
 
     
-    if(Warriors.length <2){
+    if(Warriors.length <4){
         var newWarrior = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Warrior, {role:'Warrior'});
     }
     
        
-    if(Upgraders.length <4){
+    if(Upgraders.length <3){
         var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Upgrader, {role:'Upgrader'});
     }
     
@@ -34,27 +34,27 @@ module.exports.loop = function() {
         var newRepairman = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Repairman, {role: 'Repairman'});
     }
     
-    if(Proles.length < 3) {
+    if(Proles.length < 0) {
         var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Prole, {role: 'Prole'});
     }
      
-    if(Builders.length <2){
+    if(Builders.length <5){
         var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Builder, {role: 'Builder'});
     }
     
-    if(Harvesters.length <6){
+    if(Harvesters.length <2){
         var newHarvester = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Harvester, {role: 'Harvester'});
     }
     
-    if(Finders.length <5){
+    if(Finders.length <2){
         var newFinder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Finder, {role: 'Finder'});
     }
     
-    if(Couriers.length <3){
+    if(Couriers.length <2){
         var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
     }
     
-    if(SpawnCouriers.length <3){
+    if(SpawnCouriers.length <2){
         var newSpawnCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').SpawnCourier, {role: 'SpawnCourier'});
     }
 
@@ -65,7 +65,7 @@ module.exports.loop = function() {
         for(var role in roles){
             if(creep.memory.role == role){
                 roles[role].behavior.run(creep);
-                creep.room.visual.text(role, creep.pos);
+                //creep.room.visual.text(role, creep.pos);
             }
         }
     }
