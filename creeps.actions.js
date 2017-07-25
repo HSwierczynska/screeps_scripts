@@ -1,10 +1,18 @@
 function searchingForSources(creep){
-    var source = creep.pos.findClosestByPath(FIND_SOURCES);
+    var source = creep.pos.findClosestByRange(FIND_SOURCES);
     if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
         creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
       }
  };
 
+
+
+function specifiedSource(creep, posX, posY){
+    var source = creep.room.lookForAt(LOOK_SOURCES, posX, posY);
+                if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+              creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                  }
+};
 
 
 
@@ -99,6 +107,7 @@ function transferingToExtension(creep){
 
 module.exports= {
     searchingForSources,
+    specifiedSource,
     dumpEnergy,
     collectDroppedEnergy,
     withdrawFromEnergyStructure,
