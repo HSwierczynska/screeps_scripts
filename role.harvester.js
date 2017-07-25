@@ -3,8 +3,7 @@ const actions = require('creeps.actions');
 var roleHarvester = {
 
     run: function(creep){
-
-        if(creep.carry.energy < creep.carryCapacity){
+        if(creep.carry.energy == 0){
             actions.searchingForSources(creep);
         }
         else{
