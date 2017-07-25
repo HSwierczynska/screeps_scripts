@@ -15,7 +15,7 @@ var roleRepairman ={
         if(creep.memory.repairing) {
             
             var closestDamagedWall = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => structure.structureType == STRUCTURE_WALL && structure.hits < 200000
+                filter: (structure) => structure.structureType == STRUCTURE_WALL && structure.hits < 50000
             });
             if(closestDamagedWall){
                 if(creep.repair(closestDamagedWall) == ERR_NOT_IN_RANGE){
@@ -24,7 +24,7 @@ var roleRepairman ={
             }
         }
         else{
-            actions.searchingForSources(creep);
+            actions.specifiedSource(creep, 34, 15);
         }
     }    
 }
