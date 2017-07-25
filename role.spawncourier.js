@@ -1,6 +1,6 @@
 const actions = require('creeps.actions');
 
-var roleCourier = {
+var roleSpawnCourier = {
 
     run: function(creep){
         if(creep.carry.energy< creep.carryCapacity){
@@ -8,8 +8,11 @@ var roleCourier = {
         }
         else{
             actions.transferingToSpawn(creep);
+            if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity || Game.spawns.Spawn1 == ERR_BUSY){
+                actions.transferingToExtension(creep);
+            }
         }
     }
 };
 
-module.exports= roleCourier;
+module.exports= roleSpawnCourier;
