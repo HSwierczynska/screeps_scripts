@@ -25,11 +25,15 @@ var roleBuilder = {
             }
 	      }
 	      else {
-	          actions.searchingForSources(creep);
+	          actions.withdrawFromContainer(creep);
+	         // var source = creep.pos.findClosestByRange(FIND_SOURCES);
+              //  if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+             // creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                 // }
             }
 	      
 
-        // Reapiring the roads
+        // Repairing the roads
 
         if(creep.memory.repairing && creep.carry.energy == 0){
             creep.memory.repairing = false;
@@ -43,7 +47,7 @@ var roleBuilder = {
         if(creep.memory.repairing) {
             
             var closestDamagedRoad = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => (STRUCTURE_ROAD && structure.hits < (0.5 *structure.hitsMax) && structure.structureType != STRUCTURE_WALL)
+                filter: (structure) => structure.structureType == STRUCTURE_ROAD && structure.hits < (0.5 *structure.hitsMax)
             });
             if(closestDamagedRoad){
                 if(creep.repair(closestDamagedRoad) == ERR_NOT_IN_RANGE){
@@ -52,7 +56,11 @@ var roleBuilder = {
             }
         }
         else{
-            actions.searchingForSources(creep);
+            actions.withdrawFromContainer(creep);
+                //var source = creep.pos.findClosestByRange(FIND_SOURCES);
+            //    if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+              //creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+                //  }
         }
 
 
