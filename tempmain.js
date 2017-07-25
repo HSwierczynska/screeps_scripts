@@ -15,6 +15,7 @@ module.exports.loop = function() {
     var Harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'Harvester');
     var Finders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Finder');
     var Couriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'Courier');
+    var SpawnCouriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'SpawnCourier');
     var Repairmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'Repairman');
     var Warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'Warrior');
 
@@ -33,7 +34,7 @@ module.exports.loop = function() {
         var newRepairman = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Repairman, {role: 'Repairman'});
     }
     
-    if(Proles.length < 1) {
+    if(Proles.length < 3) {
         var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Prole, {role: 'Prole'});
     }
      
@@ -41,16 +42,20 @@ module.exports.loop = function() {
         var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Builder, {role: 'Builder'});
     }
     
-    if(Harvesters.length <4){
+    if(Harvesters.length <6){
         var newHarvester = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Harvester, {role: 'Harvester'});
     }
     
-    if(Finders.length <2){
+    if(Finders.length <5){
         var newFinder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Finder, {role: 'Finder'});
     }
     
     if(Couriers.length <3){
         var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
+    }
+    
+    if(SpawnCouriers.length <3){
+        var newSpawnCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').SpawnCourier, {role: 'SpawnCourier'});
     }
 
 
