@@ -9,9 +9,9 @@ function searchingForSources(creep){
 
 function specifiedSource(creep, posX, posY){
     var source = creep.room.lookForAt(LOOK_SOURCES, posX, posY);
-                if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-              creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-                  }
+    if(creep.harvest(source[0]) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(source[0]);
+    }
 };
 
 
