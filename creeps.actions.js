@@ -17,12 +17,12 @@ function specifiedSource(creep, posX, posY){
 
 
 
-function dumpEnergy(creep){
-	var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+function dumpEnergy(creep, posX, posY){
+	var target = creep.room.lookForAt(LOOK_STRUCTURES, {
 		filter: structure =>{
 		return structure.structureType ==  STRUCTURE_CONTAINER
 		}
-	});
+	}, posX, posY);
 	if(target && creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
 		creep.moveTo(target, {visualizePathStyle : {stroke: '#607D8B'} } );
 	};
@@ -100,7 +100,9 @@ function transferingToExtension(creep){
     return (transferingEnergy(creep, STRUCTURE_EXTENSION));
 };
 
-
+function transferingToTower(creep){
+    return (transferingEnergy(creep, STRUCTURE_TOWER));
+}
 
 
 
@@ -114,5 +116,6 @@ module.exports= {
     withdrawFromContainer,
     transferingEnergy,
     transferingToSpawn,
-    transferingToExtension
+    transferingToExtension,
+    transferingToTower
 };
