@@ -24,7 +24,8 @@ var roleRepairman ={
             }
         }
         else{
-            actions.specifiedSource(creep, 39, 16);
+              actions.withdrawFromContainer(creep);
+
         }
         
         

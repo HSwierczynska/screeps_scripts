@@ -25,7 +25,7 @@ module.exports.loop = function() {
     }
     
        
-    if(Upgraders.length <3){
+    if(Upgraders.length <7){
         var newUpgrader = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Upgrader, {role:'Upgrader'});
     }
     
@@ -34,19 +34,19 @@ module.exports.loop = function() {
         var newRepairman = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Repairman, {role: 'Repairman'});
     }
     
-    if(Proles.length < 0) {
+    if(Proles.length < 4) {
         var newProle = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Prole, {role: 'Prole'});
     }
      
-    if(Builders.length <5){
+    if(Builders.length <0){
         var newBuilder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Builder, {role: 'Builder'});
     }
     
-    if(Harvesters.length <2){
+    if(Harvesters.length <3){
         var newHarvester = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Harvester, {role: 'Harvester'});
     }
     
-    if(Finders.length <2){
+    if(Finders.length <3){
         var newFinder = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Finder, {role: 'Finder'});
     }
     
@@ -54,7 +54,7 @@ module.exports.loop = function() {
         var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
     }
     
-    if(SpawnCouriers.length <2){
+    if(SpawnCouriers.length <0){
         var newSpawnCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').SpawnCourier, {role: 'SpawnCourier'});
     }
 
@@ -65,7 +65,7 @@ module.exports.loop = function() {
         for(var role in roles){
             if(creep.memory.role == role){
                 roles[role].behavior.run(creep);
-                //creep.room.visual.text(role, creep.pos);
+                creep.room.visual.text(role, creep.pos);
             }
         }
     }
