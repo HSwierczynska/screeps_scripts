@@ -15,7 +15,6 @@ module.exports.loop = function() {
     var Harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'Harvester');
     var Finders = _.filter(Game.creeps, (creep) => creep.memory.role == 'Finder');
     var Couriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'Courier');
-    var SpawnCouriers = _.filter(Game.creeps, (creep) => creep.memory.role == 'SpawnCourier');
     var Repairmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'Repairman');
     var Warriors = _.filter(Game.creeps, (creep) => creep.memory.role == 'Warrior');
 
@@ -54,10 +53,6 @@ module.exports.loop = function() {
         var newCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').Courier, {role: 'Courier'});
     }
     
-    if(SpawnCouriers.length <0){
-        var newSpawnCourier = Game.spawns.Spawn1.createCreep(require('creeps.bodies').SpawnCourier, {role: 'SpawnCourier'});
-    }
-
 
     for(var name in Game.creeps){
         var creep = Game.creeps[name];
