@@ -25,8 +25,8 @@ function dumpEnergy(creep){
     });
     if(creep.transfer(containerTarget, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
         creep.moveTo(containerTarget);
-    
-}
+    }
+};    
 
 
 
@@ -50,7 +50,7 @@ function collectDroppedEnergy(creep){
 function withdrawFromEnergyStructure(creep, structureType){
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: structure => {
-            return structure.structureType == structureType && structure.store[RESOURCE_ENERGY] < structure.storeCapacity
+            return structure.structureType == structureType && structure.store[RESOURCE_ENERGY] != 0 && ((structure.store[RESOURCE_ENERGY] < structure.storeCapacity) || (structure.store[RESOURCE_ENERGY] = structure.storeCapacity))
         }
     });
 
@@ -118,4 +118,4 @@ module.exports= {
     transferingToSpawn,
     transferingToExtension,
     transferingToTower
-};
+}
