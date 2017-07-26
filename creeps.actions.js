@@ -17,22 +17,22 @@ function specifiedSource(creep, posX, posY){
 
 
 
-function dumpEnergy(creep, posX, posY){
-	var target = creep.room.lookForAt(LOOK_STRUCTURES, {
-		filter: structure =>{
-		return structure.structureType ==  STRUCTURE_CONTAINER
-		}
-	}, posX, posY);
-	if(target && creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-		creep.moveTo(target, {visualizePathStyle : {stroke: '#607D8B'} } );
-	};
+function dumpEnergy(creep){
+    var containerTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        filter: structure => {
+            return structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] < structure.storeCapacity
+        }
+    });
+    if(creep.transfer(containerTarget, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+        creep.moveTo(containerTarget);
+    
 }
 
 
 
 
 
-    function collectDroppedEnergy(creep){
+function collectDroppedEnergy(creep){
         var droppedEnergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES);
         if(droppedEnergy){
             if(creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE){
@@ -50,7 +50,7 @@ function dumpEnergy(creep, posX, posY){
 function withdrawFromEnergyStructure(creep, structureType){
     var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
         filter: structure => {
-            return structure.structureType == structureType && structure.store[RESOURCE_ENERGY] > 150
+            return structure.structureType == structureType && structure.store[RESOURCE_ENERGY] < structure.storeCapacity
         }
     });
 
@@ -102,7 +102,7 @@ function transferingToExtension(creep){
 
 function transferingToTower(creep){
     return (transferingEnergy(creep, STRUCTURE_TOWER));
-}
+};
 
 
 
