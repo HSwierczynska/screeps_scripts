@@ -4,18 +4,18 @@ var roleProle = {
 
     
     run: function(creep) {
+        creep.moveTo(34,15);
+
 	      if(creep.carry.energy < creep.carryCapacity) {
             actions.searchingForSources(creep);
         }
         
         else {
-            actions.transferingToSpawn(creep);
-            if(Game.spawns.Spawn1.energy == Game.spawns.Spawn1.energyCapacity){
-                actions.transferingToExtension(creep);
-            }
+            actions.dumpEnergy(creep);
         }
     }
 };
+
 
 
 
