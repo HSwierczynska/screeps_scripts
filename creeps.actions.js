@@ -61,7 +61,7 @@ function transferingEnergy(creep, structureType){
     });
 
     if(target && creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
-        creep.moveTo(target, {
+        creep.movpppeTo(target, {
             visualizePathStyle: {
                 stroke: '#d35400'
             }
@@ -88,11 +88,17 @@ function leavingEnergy(creep){
         }
     } else {
         if (creep.room.storage) {
+            if(creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
+                creep.moveTo(creep.room.storage, {
+                    visualizePathStyle:{
+                        stroke: '#c0392b'
+                    }
+                });
+            }
             
         }
     }
-    
-}
+};
 
 
 
@@ -116,5 +122,13 @@ function leavingEnergy(creep){
 //Courier actions
 
 
+
+module.exports= {
+    searchingForSources,
+    harvestingFromSpecifiedPlace,
+    withdrawFromEnergyStructure,
+    transferingEnergy,
+    leavingEnergy
+}
 
 
