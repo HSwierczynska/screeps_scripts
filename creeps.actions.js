@@ -1,7 +1,7 @@
 //Actions for everyone
 
 function searchingForSources(creep){
-    var source = creep.pos.findClosestByPath(FIND_SOURCES)  ;
+    var source = creep.pos.findClosestByPath(FIND_SOURCES);
     if(creep.harvest(source) == ERR_NOT_IN_RANGE){
         creep.moveTp(source,
                      {visualizePathStyle:
@@ -109,6 +109,28 @@ function leavingEnergy(creep){
 
 //Builder actions
 
+function buildConstructionSite(creep, structureType){
+    var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES, {
+                                             filter: (struct) => struct.structureType = structureType
+    });
+
+    if(target && creep.build(target) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(target,
+                     {
+                         visualizePathStyle:
+                         {
+                             stroke: '#ffffff'
+                         }
+                     });
+
+
+    };
+
+    function buildRoads(creep){
+
+        return buildConstructionSite(creep, STRUCTURE_ROAD);
+
+    };
 
 //Repairman actions
 
@@ -130,7 +152,9 @@ module.exports= {
     harvestingFromSpecifiedPlace,
     withdrawFromEnergyStructure,
     transferingEnergy,
-    leavingEnergy
+    leavingEnergy,
+    buildConstructionSite,
+    buildRoads
 }
 
 
