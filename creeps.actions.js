@@ -82,7 +82,8 @@ function leavingEnergy(creep){
         if(target && creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
             creep.moveTo(target, {
                 visualizePathStyle: {
-                    stroke: '#c0392b'
+                    stroke: '#c0392b',
+                    lineStyle: 'dashed'
                 }
             });
         }
@@ -91,7 +92,8 @@ function leavingEnergy(creep){
             if(creep.transfer(creep.room.storage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE){
                 creep.moveTo(creep.room.storage, {
                     visualizePathStyle:{
-                        stroke: '#c0392b'
+                        stroke: '#c0392b',
+                        lineStyle: 'dashed'
                     }
                 });
             }
