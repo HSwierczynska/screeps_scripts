@@ -134,6 +134,92 @@ function buildConstructionSite(creep, structureType){
 
 //Repairman actions
 
+    function repairRoad(creep){
+        if(creep.memory.repairing && creep.carry.energy == 0){
+            creep.memory.repairing = false;
+        }
+
+        if(!creep.memory.repairing && creep.carry.energy == creep.carryCapacity){
+            creep.memory.repairing = true;
+        }
+
+        if(creep.memory.repairing){
+            var roadToRepair = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => (structure.structureType == STRUCTURE_ROAD
+                                        && structure.hits < (0.5 * structure.hitsMax))
+            });
+
+            if(roadToRepair && creep.repair(roadToRepair) == ERR_NOT_IN_RANGE){
+                creep.moveTo(roadToRepair,
+                             {
+                                 visualizePathStyle:
+                                 {stroke: '#9E9E9E'}
+                             });
+            }
+        }
+        else{
+            actions.searchingForSources(creep);
+        }
+    };
+
+
+    function repairWall(creep){
+        if(creep.memory.repairing && creep.carry.energy == 0){
+            creep.memory.repairing = false;
+        }
+
+        if(!creep.memory.repairing && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.repairing = true;
+        }
+
+        if(creep.memory.repairing) {
+            var wallToRepair = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => (structure.structureType == STRUCTURE_WALL
+                                        && structure.hits < 50000)
+            });
+            if(wallToRepair && creep.repair(wallToRepair) == ERR_NOT_IN_RANGE){
+                creep.moveTo(wallToRepair,
+                                 {
+                                     visualizePathstyle:
+                                  {stroke: '#616161'}
+                                 });
+                }
+            
+        }
+        else{
+            actions.searchingForSources(creep);
+        }
+    };
+
+
+    function repairContainer(creep){
+        if(creep.memory.repairing && creep.carry.energy == 0){
+            creep.memory.repairing = false;
+        }
+
+        if(!creep.memory.repairing && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.repairing = true;
+        }
+
+        if(creep.memory.repairing) {
+            var containerToRepair = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                filter: (structure) => (structure.structureType == STRUCTURE_CONTAINER
+                                        && structure.hits < (0.75 *structure.hitsMax))
+            });
+            if(containerToRepair && creep.repair(containerToRepair)){
+                    creep.moveTo(containerToRepair,
+                                 {
+                                     visualizePathstyle:
+                                  {stroke: '#ffffff'}
+                                 });
+            }
+        }
+        else{
+            actions.searchingForSources(creep);
+        }
+    };
+    
+
 
 //Harvester actions
 
@@ -154,7 +240,10 @@ module.exports= {
     transferingEnergy,
     leavingEnergy,
     buildConstructionSite,
-    buildRoads
+    buildRoads,
+    repairRoad,
+    repairWall,
+    repairContainer
 }
 
 
